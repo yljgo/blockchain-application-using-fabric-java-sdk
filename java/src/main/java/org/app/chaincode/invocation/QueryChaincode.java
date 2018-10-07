@@ -27,6 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.app.config.Config.CHAINCODE_1_NAME;
 import static org.app.config.Config.HOST_IP;
 
 /**
@@ -77,7 +78,7 @@ public class QueryChaincode {
             String[] args1 = {query.toString()};
             Logger.getLogger(QueryChaincode.class.getName()).log(Level.INFO, "Querying for a evidence - " + args1[0]);
 
-            Collection<ProposalResponse> responses1Query = channelClient.queryByChainCode("EvidenceChaincode", "queryEvidence", args1);
+            Collection<ProposalResponse> responses1Query = channelClient.queryByChainCode(CHAINCODE_1_NAME, "queryEvidence", args1);
             for (ProposalResponse pres : responses1Query) {
                 String stringResponse = new String(pres.getChaincodeActionResponsePayload());
                 Logger.getLogger(QueryChaincode.class.getName()).log(Level.INFO, stringResponse);
