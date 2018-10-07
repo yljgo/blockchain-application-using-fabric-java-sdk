@@ -12,6 +12,7 @@
  */
 package org.app.chaincode.invocation;
 
+import com.google.gson.JsonObject;
 import org.app.client.CAClient;
 import org.app.client.ChannelClient;
 import org.app.client.FabricClient;
@@ -20,6 +21,7 @@ import org.app.user.UserContext;
 import org.app.util.Util;
 import org.hyperledger.fabric.sdk.*;
 
+import javax.json.JsonObjectBuilder;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -69,10 +71,13 @@ public class QueryChaincode {
             }
 
             Thread.sleep(10000);
-            String[] args1 = {"CAR1"};
-            Logger.getLogger(QueryChaincode.class.getName()).log(Level.INFO, "Querying for a car - " + args1[0]);
+            JsonObject query = new JsonObject();
+            query = query.getAsJsonObject("{\"selector\": {\"name\":\"张三\"}}");
 
-            Collection<ProposalResponse> responses1Query = channelClient.queryByChainCode("fabcar", "queryCar", args1);
+            String[] args1 = {query.toString()};
+            Logger.getLogger(QueryChaincode.class.getName()).log(Level.INFO, "Querying for a evidence - " + args1[0]);
+
+            Collection<ProposalResponse> responses1Query = channelClient.queryByChainCode("EvidenceChaincode", "queryEvidence", args1);
             for (ProposalResponse pres : responses1Query) {
                 String stringResponse = new String(pres.getChaincodeActionResponsePayload());
                 Logger.getLogger(QueryChaincode.class.getName()).log(Level.INFO, stringResponse);

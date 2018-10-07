@@ -67,8 +67,8 @@ public class InvokeChaincode {
             TransactionProposalRequest request = fabClient.getInstance().newTransactionProposalRequest();
             ChaincodeID ccid = ChaincodeID.newBuilder().setName(Config.CHAINCODE_1_NAME).build();
             request.setChaincodeID(ccid);
-            request.setFcn("createCar");
-            String[] arguments = {"CAR1", "Chevy", "Volt", "Red", "Nick"};
+            request.setFcn("newEvidence");
+            String[] arguments = {"1", "330291199012121111", "张三", "assd12ewrwsdfwwweee", "{\"id\": \"123\", \"date\": \"2018-10-10\"}"};
             request.setArgs(arguments);
             request.setProposalWaitTime(1000);
 
@@ -81,7 +81,7 @@ public class InvokeChaincode {
             Collection<ProposalResponse> responses = channelClient.sendTransactionProposal(request);
             for (ProposalResponse res : responses) {
                 Status status = res.getStatus();
-                Logger.getLogger(InvokeChaincode.class.getName()).log(Level.INFO, "Invoked createCar on " + Config.CHAINCODE_1_NAME + ". Status - " + status);
+                Logger.getLogger(InvokeChaincode.class.getName()).log(Level.INFO, "Invoked newEvidence on " + Config.CHAINCODE_1_NAME + ". Status - " + status);
             }
 
         } catch (Exception e) {

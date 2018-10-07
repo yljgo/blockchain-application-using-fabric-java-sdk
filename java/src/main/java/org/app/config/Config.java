@@ -4,7 +4,9 @@ import java.io.File;
 
 public class Config {
 
-    public static final String HOST_IP = "101.37.35.69";
+    //    public static final String HOST_IP = "101.37.35.69";
+
+    public static final String HOST_IP = "localhost";
 
     public static final String ORG1_MSP = "Org1MSP";
 
@@ -62,9 +64,9 @@ public class Config {
 
     public static final String CHAINCODE_ROOT_DIR = "chaincode";
 
-    public static final String CHAINCODE_1_NAME = "fabcar";
+    public static final String CHAINCODE_1_NAME = "EvidenceChaincode";
 
-    public static final String CHAINCODE_1_PATH = "github.com/fabcar";
+    public static final String CHAINCODE_1_PATH = "github.com/evidence";
 
     public static final String CHAINCODE_1_VERSION = "1";
 
