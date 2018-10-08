@@ -80,27 +80,23 @@ func (e *EvidenceChaincode) newEvidence(stub shim.ChaincodeStubInterface, args [
 		_name := args[2]
 		_hash := args[3]
 		_content := args[4]
-
-		newEvidence := &Evidence{_id, _idcard, _name, _hash, _content}
-
-		_evidence, err := stub.GetState(_id)
+		_evidence := &Evidence{_id, _idcard, _name, _hash, _content}
+		_ejson, err := json.Marshal(_evidence)
 
 		if err != nil {
 			ri.error(err.Error())
 		} else {
-			if _evidence == nil {
-				ri.error("Error the journal does not exists")
+			_old, err := stub.GetState(_id)
+			if err != nil {
+				ri.error(err.Error())
+			} else if _old != nil {
+				ri.error("the evidence has exists")
 			} else {
-				_ejson, err := json.Marshal(newEvidence)
+				err := stub.PutState(_id, _ejson)
 				if err != nil {
 					ri.error(err.Error())
 				} else {
-					err := stub.PutState(_id, _ejson)
-					if err != nil {
-						ri.error(err.Error())
-					} else {
-						ri.ok("")
-					}
+					ri.ok("")
 				}
 			}
 		}
