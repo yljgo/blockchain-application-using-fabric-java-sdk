@@ -64,18 +64,15 @@ public class QueryChaincode {
             channel.addOrderer(orderer);
             channel.initialize();
 
-            Logger.getLogger(QueryChaincode.class.getName()).log(Level.INFO, "Querying for all cars ...");
-            Collection<ProposalResponse> responsesQuery = channelClient.queryByChainCode("fabcar", "queryAllCars", null);
-            for (ProposalResponse pres : responsesQuery) {
-                String stringResponse = new String(pres.getChaincodeActionResponsePayload());
-                Logger.getLogger(QueryChaincode.class.getName()).log(Level.INFO, stringResponse);
-            }
+//            Logger.getLogger(QueryChaincode.class.getName()).log(Level.INFO, "Querying for all cars ...");
+//            Collection<ProposalResponse> responsesQuery = channelClient.queryByChainCode("fabcar", "queryAllCars", null);
+//            for (ProposalResponse pres : responsesQuery) {
+//                String stringResponse = new String(pres.getChaincodeActionResponsePayload());
+//                Logger.getLogger(QueryChaincode.class.getName()).log(Level.INFO, stringResponse);
+//            }
+//            Thread.sleep(10000);
 
-            Thread.sleep(10000);
-            JsonObject query = new JsonObject();
-            query = query.getAsJsonObject("{\"selector\": {\"name\":\"张三\"}}");
-
-            String[] args1 = {query.toString()};
+            String[] args1 = {"{\"selector\": {\"name\":{\"$eq\": \"张三\"}}}"};
             Logger.getLogger(QueryChaincode.class.getName()).log(Level.INFO, "Querying for a evidence - " + args1[0]);
 
             Collection<ProposalResponse> responses1Query = channelClient.queryByChainCode(CHAINCODE_1_NAME, "queryEvidence", args1);

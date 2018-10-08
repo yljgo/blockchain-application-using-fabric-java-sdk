@@ -4,7 +4,7 @@ import java.io.File;
 
 public class Config {
 
-    //    public static final String HOST_IP = "101.37.35.69";
+//    public static final String HOST_IP = "101.37.35.69";
 
     public static final String HOST_IP = "localhost";
 

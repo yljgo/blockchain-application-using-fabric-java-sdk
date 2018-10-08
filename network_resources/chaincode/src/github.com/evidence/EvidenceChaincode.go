@@ -15,9 +15,9 @@ type EvidenceChaincode struct{}
 type Evidence struct {
 	ID      string `json:"id"`
 	IDCard  string `json:"id_card"`
-	Name    string `json:name`
-	Hash    string `json:hash`
-	Content string `json:content`
+	Name    string `json:"name"`
+	Hash    string `json:"hash"`
+	Content string `json:"content"`
 }
 
 type ResInfo struct {
