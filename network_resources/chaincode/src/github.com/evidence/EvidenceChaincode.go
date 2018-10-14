@@ -14,7 +14,7 @@ type EvidenceChaincode struct{}
 
 type Evidence struct {
 	ID      string `json:"id"`
-	IDCard  string `json:"id_card"`
+	IDCard  string `json:"idCard"`
 	Name    string `json:"name"`
 	Hash    string `json:"hash"`
 	Content string `json:"content"`
