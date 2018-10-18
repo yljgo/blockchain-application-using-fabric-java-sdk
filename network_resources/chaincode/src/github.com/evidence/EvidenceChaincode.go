@@ -175,10 +175,10 @@ func (t *EvidenceChaincode) checkArgs(args []string, expectNum int) error {
 	if len(args) != expectNum {
 		return fmt.Errorf("Incorrect number of arguments. Expecting  " + strconv.Itoa(expectNum))
 	}
-	for p := 0; p < len(args); p++ {
-		if len(args[p]) <= 0 {
-			return fmt.Errorf(strconv.Itoa(p+1) + "nd argument must be a non-empty string")
-		}
-	}
+	// for p := 0; p < len(args); p++ {
+	// 	if len(args[p]) <= 0 {
+	// 		return fmt.Errorf(strconv.Itoa(p+1) + "nd argument must be a non-empty string")
+	// 	}
+	// }
 	return nil
 }
