@@ -78,7 +78,7 @@ PeerOrgs:
     # name collisions
     # ---------------------------------------------------------------------------
     Template:
-      Count: 2
+      Count: 1
       # Start: 5
       # Hostname: {{.Prefix}}{{.Index}} # default
     # ---------------------------------------------------------------------------
@@ -101,6 +101,6 @@ PeerOrgs:
     # CA:
     #    Hostname: ca # implicitly ca.org2.example.com
     Template:
-      Count: 2
+      Count: 1
     Users:
       Count: 1
