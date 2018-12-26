@@ -50,17 +50,9 @@ public class Config {
 
     public static final String ORG1_PEER_0_URL = "grpc://" + HOST_IP + ":7051";
 
-    public static final String ORG1_PEER_1 = "peer1.org1.example.com";
-
-    public static final String ORG1_PEER_1_URL = "grpc://" + HOST_IP + ":7056";
-
     public static final String ORG2_PEER_0 = "peer0.org2.example.com";
 
     public static final String ORG2_PEER_0_URL = "grpc://" + HOST_IP + ":8051";
-
-    public static final String ORG2_PEER_1 = "peer1.org2.example.com";
-
-    public static final String ORG2_PEER_1_URL = "grpc://" + HOST_IP + ":8056";
 
     public static final String CHAINCODE_ROOT_DIR = "chaincode";
 

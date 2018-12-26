@@ -71,23 +71,17 @@ public class DeployInstantiateChaincode {
 			Channel mychannel = fabClient.getInstance().newChannel(Config.CHANNEL_NAME);
 			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL);
 			Peer peer0_org1 = fabClient.getInstance().newPeer(Config.ORG1_PEER_0, Config.ORG1_PEER_0_URL);
-			Peer peer1_org1 = fabClient.getInstance().newPeer(Config.ORG1_PEER_1, Config.ORG1_PEER_1_URL);
 			Peer peer0_org2 = fabClient.getInstance().newPeer(Config.ORG2_PEER_0, Config.ORG2_PEER_0_URL);
-			Peer peer1_org2 = fabClient.getInstance().newPeer(Config.ORG2_PEER_1, Config.ORG2_PEER_1_URL);
 			mychannel.addOrderer(orderer);
 			mychannel.addPeer(peer0_org1);
-			mychannel.addPeer(peer1_org1);
 			mychannel.addPeer(peer0_org2);
-			mychannel.addPeer(peer1_org2);
 			mychannel.initialize();
 
 			List<Peer> org1Peers = new ArrayList<Peer>();
 			org1Peers.add(peer0_org1);
-			org1Peers.add(peer1_org1);
-			
+
 			List<Peer> org2Peers = new ArrayList<Peer>();
 			org2Peers.add(peer0_org2);
-			org2Peers.add(peer1_org2);
 			
 			Collection<ProposalResponse> response = fabClient.deployChainCode(Config.CHAINCODE_1_NAME,
 					Config.CHAINCODE_1_PATH, Config.CHAINCODE_ROOT_DIR, Type.GO_LANG.toString(),
