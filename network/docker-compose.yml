@@ -143,8 +143,8 @@ services:
     networks:
       - custom
     ports:
-      - 7056:7051
-      - 7058:7053
+      - 8051:7051
+      - 8053:7053
     volumes:
         - /var/run/:/host/var/run/
         - ../network_resources/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp:/etc/hyperledger/fabric/msp
