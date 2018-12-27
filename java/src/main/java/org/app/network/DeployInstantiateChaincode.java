@@ -55,34 +55,17 @@ public class DeployInstantiateChaincode {
 			org1Admin.setMspId("Org1MSP");
 			org1Admin.setName("admin");
 
-			UserContext org2Admin = new UserContext();
-			File pkFolder2 = new File(Config.ORG2_USR_ADMIN_PK);
-			File[] pkFiles2 = pkFolder2.listFiles();
-			File certFolder2 = new File(Config.ORG2_USR_ADMIN_CERT);
-			File[] certFiles2 = certFolder2.listFiles();
-			Enrollment enrollOrg2Admin = Util.getEnrollment(Config.ORG2_USR_ADMIN_PK, pkFiles2[0].getName(),
-					Config.ORG2_USR_ADMIN_CERT, certFiles2[0].getName());
-			org2Admin.setEnrollment(enrollOrg2Admin);
-			org2Admin.setMspId(Config.ORG2_MSP);
-			org2Admin.setName(Config.ADMIN);
-			
 			FabricClient fabClient = new FabricClient(org1Admin);
 
 			Channel mychannel = fabClient.getInstance().newChannel(Config.CHANNEL_NAME);
 			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL);
 			Peer peer0_org1 = fabClient.getInstance().newPeer(Config.ORG1_PEER_0, Config.ORG1_PEER_0_URL);
-			Peer peer0_org2 = fabClient.getInstance().newPeer(Config.ORG2_PEER_0, Config.ORG2_PEER_0_URL);
 			mychannel.addOrderer(orderer);
 			mychannel.addPeer(peer0_org1);
-			mychannel.addPeer(peer0_org2);
 			mychannel.initialize();
 
 			List<Peer> org1Peers = new ArrayList<Peer>();
 			org1Peers.add(peer0_org1);
-
-			List<Peer> org2Peers = new ArrayList<Peer>();
-			org2Peers.add(peer0_org2);
-			
 			Collection<ProposalResponse> response = fabClient.deployChainCode(Config.CHAINCODE_1_NAME,
 					Config.CHAINCODE_1_PATH, Config.CHAINCODE_ROOT_DIR, Type.GO_LANG.toString(),
 					Config.CHAINCODE_1_VERSION, org1Peers);
@@ -93,18 +76,6 @@ public class DeployInstantiateChaincode {
 						Config.CHAINCODE_1_NAME + "- Chain code deployment " + res.getStatus());
 			}
 
-			fabClient.getInstance().setUserContext(org2Admin);
-			
-			response = fabClient.deployChainCode(Config.CHAINCODE_1_NAME,
-					Config.CHAINCODE_1_PATH, Config.CHAINCODE_ROOT_DIR, Type.GO_LANG.toString(),
-					Config.CHAINCODE_1_VERSION, org2Peers);
-			
-			
-			for (ProposalResponse res : response) {
-				Logger.getLogger(DeployInstantiateChaincode.class.getName()).log(Level.INFO,
-						Config.CHAINCODE_1_NAME + "- Chain code deployment " + res.getStatus());
-			}
-			
 			ChannelClient channelClient = new ChannelClient(mychannel.getName(), mychannel, fabClient);
 
 			String[] arguments = { "" };

@@ -47,17 +47,6 @@ public class CreateChannel {
             org1Admin.setMspId(Config.ORG1_MSP);
             org1Admin.setName(Config.ADMIN);
 
-            UserContext org2Admin = new UserContext();
-            File pkFolder2 = new File(Config.ORG2_USR_ADMIN_PK);
-            File[] pkFiles2 = pkFolder2.listFiles();
-            File certFolder2 = new File(Config.ORG2_USR_ADMIN_CERT);
-            File[] certFiles2 = certFolder2.listFiles();
-            Enrollment enrollOrg2Admin = Util.getEnrollment(Config.ORG2_USR_ADMIN_PK, pkFiles2[0].getName(),
-                    Config.ORG2_USR_ADMIN_CERT, certFiles2[0].getName());
-            org2Admin.setEnrollment(enrollOrg2Admin);
-            org2Admin.setMspId(Config.ORG2_MSP);
-            org2Admin.setName(Config.ADMIN);
-
             FabricClient fabClient = new FabricClient(org1Admin);
 
             // Create a new channel
@@ -71,7 +60,6 @@ public class CreateChannel {
                     channelConfigurationSignatures);
 
             Peer peer0_org1 = fabClient.getInstance().newPeer(Config.ORG1_PEER_0, Config.ORG1_PEER_0_URL);
-            Peer peer0_org2 = fabClient.getInstance().newPeer(Config.ORG2_PEER_0, Config.ORG2_PEER_0_URL);
 
             mychannel.joinPeer(peer0_org1);
 
@@ -79,9 +67,7 @@ public class CreateChannel {
 
             mychannel.initialize();
 
-            fabClient.getInstance().setUserContext(org2Admin);
             mychannel = fabClient.getInstance().getChannel("mychannel");
-            mychannel.joinPeer(peer0_org2);
 
             Logger.getLogger(CreateChannel.class.getName()).log(Level.INFO, "Channel created " + mychannel.getName());
             Collection peers = mychannel.getPeers();
