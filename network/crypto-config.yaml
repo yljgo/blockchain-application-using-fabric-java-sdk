@@ -88,19 +88,3 @@ PeerOrgs:
     # ---------------------------------------------------------------------------
     Users:
       Count: 1
-  # ---------------------------------------------------------------------------
-  # Org2: See "Org1" for full specification
-  # ---------------------------------------------------------------------------
-  - Name: Org2
-    Domain: org2.example.com
-    EnableNodeOUs: true
-    CA:
-        Country: US
-        Province: California
-        Locality: San Francisco
-    # CA:
-    #    Hostname: ca # implicitly ca.org2.example.com
-    Template:
-      Count: 1
-    Users:
-      Count: 1
