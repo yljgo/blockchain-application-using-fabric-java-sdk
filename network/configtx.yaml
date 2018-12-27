@@ -14,7 +14,7 @@
 ################################################################################
 Profiles:
 
-    TwoOrgsOrdererGenesis:
+    OneOrgsOrdererGenesis:
         Orderer:
             <<: *OrdererDefaults
             Organizations:
