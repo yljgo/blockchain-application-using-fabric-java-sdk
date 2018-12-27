@@ -42,7 +42,6 @@ services:
         - ../network_resources/config/:/etc/hyperledger/configtx
         - ../network_resources/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/:/etc/hyperledger/msp/orderer
         - ../network_resources/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/msp/peerOrg1
-        - ../network_resources/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/msp/peerOrg2
 
   couchdb0:
     container_name: couchdb0
